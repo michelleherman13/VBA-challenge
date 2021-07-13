@@ -1,0 +1,99 @@
+Sub StockData()
+
+'loops will now apply to each worksheet
+    For Each ws In Worksheets
+    ws.Activate
+
+'determines last row
+Dim lastRow As Double
+    lastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+'Creates Headers
+Cells(1, 9).Value = "Ticker"
+Cells(1, 10).Value = "Yearly Change"
+Cells(1, 11).Value = "Percent Change"
+Cells(1, 12).Value = "Total Stock Volume"
+'bonus
+Cells
+
+'Creates Variables for stock data
+Dim ticker As String
+Dim ticker_count As Integer
+Dim lastRowState As Long
+Dim open_price As Double
+Dim close_price As Double
+Dim year_change As Double
+Dim percent_change As Double
+Dim total_stock_vol As Double
+'bonus
+
+
+' baseline values
+number_tickers = 0
+ticker = 0
+year_change = 0
+open_price = 0
+percent_change = 0
+total_stock_vol = 0
+'bonus
+greatest_inc = 0
+greatest_dec = 0
+greatest_vol = 0
+
+' actual Loop that will run
+For i = 2 To lastRowState
+ticker = Cells(i, 1).Value
+
+If open_price = 0 Then
+    open_price = Cells(i, 3).Value
+
+End If
+
+'find total stocks volume
+total_stock_vol = total_stock_vol + Cells(i, 7).Value
+
+'next ticker
+If Cells(i + 1, 1).Value <> ticker Then
+    number_tickers = number_tickers + 1
+    Cells(number_tickers + 1, 9) = ticker
+
+    close_price = Cells(i, 6)
+
+    year_change = close_price - open_price
+
+    Cells(number_tickers + 1, 10).Value = year_change
+
+  If open_price = 0 Then
+    percent_change = 0
+    Else
+    percent_change = (year_change / open_price)
+    End If
+            
+open_price = 0
+
+Cells(number_tickers + 1, 12).Value = total_stock_vol
+
+total_stock_vol = 0
+
+' style/formatting
+If year_change > 0 Then
+    Cells(number_tickers + 1, 10).Interior.ColorIndex = 4
+    ElseIf year_change < 0 Then
+    
+    Cells(number_tickers + 1, 10).Interior.ColorIndex = 3
+    
+    Else
+    Cells(number_tickers + 1, 10).Interior.ColorIndex = 6
+    
+    End If
+    Cells(number_tickers + 1, 11).Value = Format(percent_change, "Percent")
+
+
+End If
+
+            Next i
+    Next ws
+
+End Sub
+
+
