@@ -1,4 +1,4 @@
-#VBA Homework: The VBA of Wall Street
+# VBA Homework: The VBA of Wall Street
 
 This assignment was designed to display student knowledge of VBA skill by analyzing stock market data.
 
