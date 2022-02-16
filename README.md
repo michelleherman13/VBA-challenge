@@ -1,6 +1,6 @@
-# VBA Homework: The VBA of Wall Street
+# VBA 
 
-This assignment was designed to display student knowledge of VBA skill by analyzing stock market data.
+Microsoft VBA skill was utilized to analyze given stock market data.
 
    Overview of Instructions:
 
